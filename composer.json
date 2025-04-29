@@ -1,10 +1,18 @@
 {
     "require-dev": {
-        "pestphp/pest": "^3.8"
+        "pestphp/pest": "^3.8",
+        "phpunit/phpunit": "^11.5",
+        "laravel/pint": "^1.22",
+        "phpstan/phpstan": "^2.1"
     },
     "config": {
         "allow-plugins": {
             "pestphp/pest-plugin": true
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
         }
     }
 }
