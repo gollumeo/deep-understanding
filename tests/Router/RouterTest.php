@@ -24,6 +24,11 @@ describe('Feature: Route Matching', function () {
     });
 
     it('can match a `GET` request to a route', function () {
-        expect(false)->toBeFalsy();
+        $router = new Router();
+        $router->register(verb: 'GET', uri: '/users', action: [DummyController::class, 'index']);
+
+        $result = $router->match('GET', '/users');
+
+        expect($result)->toBe([DummyController::class, 'index']);
     });
 });
