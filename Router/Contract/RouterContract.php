@@ -19,4 +19,9 @@ interface RouterContract
      * }>
      */
     public function list(): array;
+
+    /**
+     * @return array{0: class-string, 1: string}
+     */
+    public function match(string $verb, string $uri): array;
 }

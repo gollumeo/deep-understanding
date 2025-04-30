@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Router;
 
+use PHPStan\BetterReflection\Reflection\Adapter\Exception\NotImplemented;
+
 final class Router implements Contract\RouterContract
 {
     /**
@@ -33,5 +35,13 @@ final class Router implements Contract\RouterContract
     public function list(): array
     {
         return $this->routes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function match(string $verb, string $uri): array
+    {
+        throw new NotImplemented('Method `match` not implemented.');
     }
 }
