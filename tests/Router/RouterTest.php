@@ -6,7 +6,7 @@ use Router\Router;
 use Tests\Fixtures\DummyController;
 
 describe('Feature: Route Matching', function () {
-    it('can register a new route', function () {
+    it('can register a new `GET` route', function () {
         $router = new Router();
         $router->register(verb: 'GET', uri: '/users', action: [DummyController::class, 'index']);
         $routes = $router->list();
@@ -23,7 +23,7 @@ describe('Feature: Route Matching', function () {
         ]);
     });
 
-    it('can match a request to a route', function () {
+    it('can match a `GET` request to a route', function () {
         expect(false)->toBeFalsy();
     });
 });
