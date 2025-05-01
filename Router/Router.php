@@ -42,22 +42,35 @@ final class Router implements Contract\RouterContract
      */
     public function match(string $verb, string $uri): array
     {
-        if (empty($this->routes)) {
-            throw new InvalidArgumentException('No route registered.');
-        }
+        $this->checkRoutes();
 
-        $result = null;
-        foreach ($this->routes as $route) {
-            if ($verb === $route['verb'] && $uri === $route['uri']) {
-                $result = $route['action'];
-                break;
-            }
-        }
+        $result = $this->processRoutes($verb, $uri);
 
         if (! $result) {
             throw new InvalidArgumentException('No matching route found.');
         }
 
         return $result;
+    }
+
+    private function checkRoutes(): void
+    {
+        if (empty($this->routes)) {
+            throw new InvalidArgumentException('No route registered.');
+        }
+    }
+
+    /**
+     * @return null|array{0: class-string, 1: string}
+     */
+    private function processRoutes(string $verb, string $uri): ?array
+    {
+        foreach ($this->routes as $route) {
+            if ($verb === $route['verb'] && $uri === $route['uri']) {
+                return $route['action'];
+            }
+        }
+
+        return null;
     }
 }
