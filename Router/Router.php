@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Router;
 
-use PHPStan\BetterReflection\Reflection\Adapter\Exception\NotImplemented;
+use InvalidArgumentException;
 
 final class Router implements Contract\RouterContract
 {
@@ -42,6 +42,22 @@ final class Router implements Contract\RouterContract
      */
     public function match(string $verb, string $uri): array
     {
-        throw new NotImplemented('Method `match` not implemented.');
+        if (empty($this->routes)) {
+            throw new InvalidArgumentException('No route registered.');
+        }
+
+        $result = null;
+        foreach ($this->routes as $route) {
+            if ($verb === $route['verb'] && $uri === $route['uri']) {
+                $result = $route['action'];
+                break;
+            }
+        }
+
+        if (! $result) {
+            throw new InvalidArgumentException('No matching route found.');
+        }
+
+        return $result;
     }
 }
