@@ -5,19 +5,17 @@ declare(strict_types=1);
 namespace Dispatching;
 
 use Dispatching\Contract\DispatchActionContract;
+use Dispatching\ValueObject\RouteAction;
 
-final class DispatchAction implements DispatchActionContract
+final readonly class DispatchAction implements DispatchActionContract
 {
-    /**
-     * {@inheritDoc}
-     */
-    public function __construct(private readonly array $action) {}
+    public function __construct(private RouteAction $action) {}
 
     public function execute(): mixed
     {
-        $controller = $this->action[0];
-        $callable = $this->action[1];
+        $controller = $this->action->controller();
+        $method = $this->action->method();
 
-        return new $controller()->$callable();
+        return new $controller()->$method();
     }
 }
