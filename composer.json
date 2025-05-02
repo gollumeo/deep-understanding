@@ -8,11 +8,15 @@
   "config": {
     "allow-plugins": {
       "pestphp/pest-plugin": true
+    },
+    "platform": {
+      "php": "8.4.6"
     }
   },
   "autoload": {
     "psr-4": {
-      "Router\\": "Router/"
+      "Router\\": "Router/",
+      "Dispatching\\": "Dispatching/"
     }
   },
   "autoload-dev": {
