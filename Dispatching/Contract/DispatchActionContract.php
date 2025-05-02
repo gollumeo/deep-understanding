@@ -4,12 +4,11 @@ declare(strict_types=1);
 
 namespace Dispatching\Contract;
 
+use Dispatching\ValueObject\RouteAction;
+
 interface DispatchActionContract
 {
-    /**
-     * @param  array{0: class-string, 1: string}  $action
-     */
-    public function __construct(array $action);
+    public function __construct(RouteAction $action);
 
     public function execute(): mixed;
 }
