@@ -45,3 +45,5 @@ describe('Feature: Route Matching', function () {
         expect(fn () => $router->match('PUT', '/users'))->toThrow(InvalidArgumentException::class);
     });
 });
+
+describe('Feature: Route Dispatching delegation', function () {});
