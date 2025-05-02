@@ -13,6 +13,11 @@ final readonly class DispatchAction implements DispatchActionContract
 
     public function execute(): mixed
     {
+        return $this->callRouteAction();
+    }
+
+    private function callRouteAction(): mixed
+    {
         $controller = $this->action->controller();
         $method = $this->action->method();
 
