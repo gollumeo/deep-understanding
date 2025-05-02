@@ -4,4 +4,10 @@ declare(strict_types=1);
 
 namespace Tests\Fixtures;
 
-final class DummyController {}
+final class DummyController
+{
+    public function index(): string
+    {
+        return 'hello-world';
+    }
+}
