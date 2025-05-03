@@ -5,7 +5,7 @@ declare(strict_types=1);
 use Router\Router;
 use Tests\Fixtures\DummyController;
 
-describe('Feature: Route Matching', function () {
+describe('Router Matching', function () {
     it('can register a new route', function () {
         $router = new Router();
         $router->register(verb: 'GET', uri: '/users', action: [DummyController::class, 'index']);
@@ -45,5 +45,3 @@ describe('Feature: Route Matching', function () {
         expect(fn () => $router->match('PUT', '/users'))->toThrow(InvalidArgumentException::class);
     });
 });
-
-describe('Feature: Route Dispatching delegation', function () {});
